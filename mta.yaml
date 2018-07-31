@@ -1,0 +1,44 @@
+ID: deepdive9
+_schema-version: '2.1'
+version: 0.0.1
+modules:
+  - name: approuter_deepdive
+    type: nodejs
+    path: approuter
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+    properties:
+      TENANT_HOST_PATTERN: "^(.*)-trial-dev-approuter.cfapps.us10.hana.ondemand.com"
+      destinations: >
+        [
+            {"name":"app-destination", "url":"https://s0018346754trial-trial-dev-deepdive.cfapps.us10.hana.ondemand.com", "forwardAuthToken": true }
+        ]
+    requires:
+      - name: my-xsuaa
+      
+  - name: deepdive
+    type: java
+    path: srv
+    parameters:
+      disk-quota: 256M
+      memory: 512M
+    provides:
+      - name: srv_api
+        properties:
+          TARGET_RUNTIME: tomee
+          JBP_CONFIG_SAPJVM_MEMORY_SIZES: 'metaspace:96m..'
+          SAP_JWT_TRUST_ACL: '[{"clientid" : "*", "identityzone" : "*"}]'
+    requires:
+      - name: my-xsuaa
+      - name: my-destination
+resources:
+  - name: my-destination
+    type: destination
+    description: Destination Service
+  - name: my-xsuaa
+    type: com.sap.xs.uaa
+    parameters:
+     service: xsuaa
+     service-plan: application
+     path: config/xs-security.json
