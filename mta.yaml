@@ -2,7 +2,7 @@ ID: deepdive9
 _schema-version: '2.1'
 version: 0.0.1
 modules:
-  - name: approuter_deepdive
+  - name: approuter
     type: nodejs
     path: approuter
     parameters:
@@ -12,7 +12,7 @@ modules:
       TENANT_HOST_PATTERN: "^(.*)-trial-dev-approuter.cfapps.us10.hana.ondemand.com"
       destinations: >
         [
-            {"name":"app-destination", "url":"https://s0018346754trial-trial-dev-deepdive.cfapps.us10.hana.ondemand.com", "forwardAuthToken": true }
+            {"name":"app-destination", "url":"<url>", "forwardAuthToken": true }
         ]
     requires:
       - name: my-xsuaa
