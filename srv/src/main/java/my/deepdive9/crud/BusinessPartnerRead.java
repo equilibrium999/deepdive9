@@ -39,8 +39,8 @@ public class BusinessPartnerRead {
 
 	@Query(serviceName = "CrudService", entity = "BusinessPartner")
 	public QueryResponse queryCustomers(QueryRequest qryRequest) {
-		final User currentUser = UserAccessor.getCurrentUser();
-		System.out.println("User: " + currentUser);
+		// final User currentUser = UserAccessor.getCurrentUser();
+		// System.out.println("User: " + currentUser);
 
 		List<BusinessPartner> businessPartners = new BusinessPartnerReadCommand(new ErpConfigContext(),
 				qryRequest.getTopOptionValue(), qryRequest.getSkipOptionValue(), qryRequest.getSelectProperties(),

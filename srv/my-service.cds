@@ -1,9 +1,9 @@
-/*using my.app from '../db/data-model';
+// using my.app from '../db/data-model';
 
-service CrudService {
-	@cds.persistence.skip
-	Entity BusinessPartner as projection on app.BusinessPartner;
-}*/
+// service CrudService {
+// 	@cds.persistence.skip
+// 	Entity BusinessPartner as projection on app.BusinessPartner;
+// }
 using API_BUSINESS_PARTNER as bp from './external/csn/API_BUSINESS_PARTNER';
 
 service CrudService{
